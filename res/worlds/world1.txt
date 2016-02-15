@@ -1,0 +1,27 @@
+20 12
+10 10
+0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0
+0 2 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0
+0 2 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+0 1 1 1 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+0 1 1 0 0 0 0 1 1 1 1 0 1 0 0 0 0 0 0 0
+0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 1 1 1 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0
+
+
+
+
+
+
+
+
+/* Commentaires */
+/* Sur la première ligne, le nombre 20 représente le nombre de tiles sur l'axe horizonale ou la largeur de la map */
+/* Sur la première ligne, le nombre 12 représente le nombre de tiles sur l'axe verticale ou la hauteur de la map */
+/* Sur la deuxième ligne, ce sont les cordonnées auxquelless nous allons dessiner les tiles sur l'écran */
+/* Ensuite, on dessine les tiles en utilisant l'id de ces dernières. */
