@@ -13,14 +13,17 @@ import dev.codenmore.tilegame.Handler;
 public abstract class State {
 
 	protected Handler handler;
+	protected StateManager stateManager;
 
 	/**
 	 * Constructeur du state (etat)
 	 * 
 	 * @param handler
+	 * @param stateManager 
 	 */
-	public State(Handler handler) {
+	public State(Handler handler, StateManager stateManager) {
 		this.handler = handler;
+		this.stateManager = stateManager; 
 	}
 
 	/**

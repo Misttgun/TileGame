@@ -42,7 +42,7 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 
-		entityManager = new EntityManager(handler, new Player(handler, 10, 10));
+		entityManager = new EntityManager(handler, new Player(handler, 350, 400));
 		entityManager.addEntity(new Tree(handler, 100, 250));
 		entityManager.addEntity(new Tree(handler, 150, 350));
 		entityManager.addEntity(new Tree(handler, 400, 450));

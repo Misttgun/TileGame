@@ -1,5 +1,10 @@
 package dev.codenmore.tilegame.states;
 
+import java.awt.Graphics;
+import java.util.Stack;
+
+import dev.codenmore.tilegame.Handler;
+
 /**
  * Classe qui gere les differents etats du jeu.
  * 
@@ -8,21 +13,44 @@ package dev.codenmore.tilegame.states;
  */
 public class StateManager {
 
-	private static State currentState = null;
+	private Stack<State> states;
+	@SuppressWarnings("unused")
+	private Handler handler;
 
 	/**
-	 * @return the currentState
+	 * Constructeur du StateManager.
+	 * 
+	 * @param handler
 	 */
-	public static State getState() {
-		return currentState;
+	public StateManager(Handler handler) {
+		states = new Stack<>();
+		this.handler = handler;
+		states.push(new MenuState(handler, this));
 	}
 
 	/**
-	 * @param currentState
-	 *            the currentState to set
+	 * Methode qui mets a jour le state manager.
 	 */
-	public static void setState(State currentState) {
-		StateManager.currentState = currentState;
+	public void tick() {
+		states.peek().tick();
+	}
+
+	/**
+	 * Methode qui gere le rendu du state manager.
+	 * 
+	 * @param g
+	 */
+	public void render(Graphics g) {
+		states.peek().render(g);
+	}
+
+	// Getters Setters
+
+	/**
+	 * @return the states
+	 */
+	public Stack<State> getStates() {
+		return states;
 	}
 
 }

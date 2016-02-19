@@ -70,19 +70,19 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
-		if (handler.getKeyManager().up) {
+		if (handler.getKeyManager().up.isPressed()) {
 			movingDir = 0;
 			yMove = -speed;
 		}
-		if (handler.getKeyManager().down) {
+		if (handler.getKeyManager().down.isPressed()) {
 			movingDir = 1;
 			yMove = speed;
 		}
-		if (handler.getKeyManager().left) {
+		if (handler.getKeyManager().left.isPressed()) {
 			movingDir = 2;
 			xMove = -speed;
 		}
-		if (handler.getKeyManager().right) {
+		if (handler.getKeyManager().right.isPressed()) {
 			movingDir = 3;
 			xMove = speed;
 		}

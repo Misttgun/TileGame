@@ -11,38 +11,60 @@ import java.awt.event.KeyListener;
  */
 public class KeyManager implements KeyListener {
 
-	private boolean[] keys;
-	public boolean up, down, left, right;
+	public Key up, down, left, right, enter;
 
 	/**
 	 * Constructeur du KeyManager.
 	 */
 	public KeyManager() {
-		keys = new boolean[256];
+		init();
 	}
 
 	/**
-	 * Methode qui mets a jour les touches du claviers.
+	 * Methode qui initialise les touches du jeu et les ajoute a la liste des touches.
 	 */
-	public void tick() {
-		up = keys[KeyEvent.VK_UP];
-		down = keys[KeyEvent.VK_DOWN];
-		left = keys[KeyEvent.VK_LEFT];
-		right = keys[KeyEvent.VK_RIGHT];
+	public void init() {
+		up = new Key();
+		down = new Key();
+		left = new Key();
+		right = new Key();
+		enter = new Key();
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()] = true;
+		toggleKey(e.getKeyCode(), true);
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
-		keys[e.getKeyCode()] = false;
+		toggleKey(e.getKeyCode(), false);
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
+
+	}
+
+	/**
+	 * Methode qui verifie si la touche est appuye.
+	 * 
+	 * @param keyCode
+	 * @param isPressed
+	 */
+	public void toggleKey(int keyCode, boolean isPressed) {
+		if (keyCode == KeyEvent.VK_UP) {
+			up.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_DOWN) {
+			down.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_LEFT) {
+			left.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_RIGHT) {
+			right.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_ENTER) {
+			enter.toggle(isPressed);
+		}
 
 	}
 

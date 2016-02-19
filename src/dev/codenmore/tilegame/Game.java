@@ -7,9 +7,6 @@ import dev.codenmore.tilegame.display.Display;
 import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.gfx.GameCamera;
 import dev.codenmore.tilegame.input.KeyManager;
-import dev.codenmore.tilegame.states.GameState;
-import dev.codenmore.tilegame.states.MenuState;
-import dev.codenmore.tilegame.states.State;
 import dev.codenmore.tilegame.states.StateManager;
 
 /**
@@ -21,9 +18,9 @@ import dev.codenmore.tilegame.states.StateManager;
 public class Game implements Runnable {
 
 	private Display display;
-	private int width;
-	private int height;
-	public String title;
+	public static int WIDTH = 800;
+	public static int HEIGHT = WIDTH * 9 / 16;
+	public static String TITLE = "Rain";
 
 	private boolean running = false;
 	private Thread thread;
@@ -32,9 +29,7 @@ public class Game implements Runnable {
 	private Graphics g;
 
 	// States
-	private State gameState;
-	@SuppressWarnings("unused")
-	private State menuState;
+	private StateManager stateManager;
 
 	// Input
 	private KeyManager keyManager;
@@ -47,15 +42,8 @@ public class Game implements Runnable {
 
 	/**
 	 * Constructeur du jeu
-	 * 
-	 * @param title
-	 * @param width
-	 * @param height
 	 */
-	public Game(String title, int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.title = title;
+	public Game() {
 		keyManager = new KeyManager();
 	}
 
@@ -63,26 +51,23 @@ public class Game implements Runnable {
 	 * Methode qui initialise le jeu
 	 */
 	private void init() {
-		display = new Display(title, width, height);
-		display.getFrame().addKeyListener(keyManager);
+		display = new Display(TITLE, WIDTH, HEIGHT);
+		display.getCanvas().addKeyListener(keyManager);
+		display.getCanvas().requestFocus();
 		Assets.init();
 
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 
-		gameState = new GameState(handler);
-		menuState = new MenuState(handler);
-		StateManager.setState(gameState);
+		stateManager = new StateManager(handler);
 	}
 
 	/**
 	 * Methode qui mets a jour le jeu a chaque tour de boucle
 	 */
 	private void tick() {
-		keyManager.tick();
-
-		if (StateManager.getState() != null) {
-			StateManager.getState().tick();
+		if (stateManager.getStates().peek() != null) {
+			stateManager.tick();
 		}
 	}
 
@@ -101,11 +86,11 @@ public class Game implements Runnable {
 		g = bs.getDrawGraphics();
 
 		// Nettoyage de l'affichage
-		g.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, WIDTH, HEIGHT);
 
 		// Debut dessin
-		if (StateManager.getState() != null) {
-			StateManager.getState().render(g);
+		if (stateManager.getStates().peek() != null) {
+			stateManager.render(g);
 		}
 
 		// Fin dessin
@@ -141,15 +126,22 @@ public class Game implements Runnable {
 			timer += now - lastTime;
 			lastTime = now;
 
-			if (delta >= 1) {
+			while (delta >= 1) {
 				tick();
-				render();
 				ticks++;
 				delta--;
 			}
 
+			try {
+				Thread.sleep((long) ((lastTime - System.nanoTime() + timePerTick) / 1000000));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			render();
+
 			if (timer >= 1000000000) {
-				System.out.println("Ticks and Frames: " + ticks);
+				// System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}
@@ -197,14 +189,14 @@ public class Game implements Runnable {
 	 * @return the width
 	 */
 	public int getWidth() {
-		return width;
+		return WIDTH;
 	}
 
 	/**
 	 * @return the height
 	 */
 	public int getHeight() {
-		return height;
+		return HEIGHT;
 	}
 
 	/**

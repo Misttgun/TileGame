@@ -6,12 +6,12 @@ import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.worlds.World;
 
 /**
- * Classe qui definit les states (etats) du jeu (niveaux, combats, etc).
+ * Classe qui definit le state (etat) du niveau 1 du jeu.
  * 
  * @author maurel
  *
  */
-public class GameState extends State {
+public class Level1State extends State {
 
 	private World world;
 
@@ -19,9 +19,10 @@ public class GameState extends State {
 	 * Constructeur du gameState. Initialise le joueur et le monde (niveau).
 	 * 
 	 * @param handler
+	 * @param stateManager
 	 */
-	public GameState(Handler handler) {
-		super(handler);
+	public Level1State(Handler handler, StateManager stateManager) {
+		super(handler, stateManager);
 		world = new World(handler, "res/worlds/world1.txt");
 		handler.setWorld(world);
 
