@@ -71,7 +71,7 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
-		if (handler.getKeyManager().up.keyStateDown && !handler.getKeyManager().up.lastKeyState) {
+		if (handler.getKeyManager().up.keyStateDown) {
 			movingDir = 0;
 			yMove = -speed;
 		}

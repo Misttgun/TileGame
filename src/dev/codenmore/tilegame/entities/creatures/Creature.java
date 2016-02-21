@@ -47,6 +47,18 @@ public abstract class Creature extends Entity {
 	 * Methode qui permet de deplacer la creature sur l'ecran.
 	 */
 	public void move() {
+		if (x < 0) {
+			x = 0;
+		} else if (x > (handler.getWorld().getWidth() * Tile.TILEWIDTH)) {
+			x = handler.getWorld().getWidth() - 1 * Tile.TILEWIDTH;
+		}
+
+		if (y < 0) {
+			y = 0;
+		} else if (y > (handler.getWorld().getHeight() * Tile.TILEHEIGHT)) {
+			y = handler.getWorld().getHeight() * Tile.TILEHEIGHT;
+		}
+		
 		if (!checkEntityCollisions(xMove, 0f)) moveX();
 		if (!checkEntityCollisions(0f, yMove)) moveY();
 	}

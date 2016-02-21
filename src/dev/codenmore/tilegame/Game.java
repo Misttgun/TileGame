@@ -128,11 +128,10 @@ public class Game implements Runnable {
 
 			while (delta >= 1) {
 				tick();
+				render();
 				ticks++;
 				delta--;
 			}
-
-			render();
 
 			if (timer >= 1000000000) {
 				System.out.println("Ticks and Frames: " + ticks);

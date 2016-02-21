@@ -46,8 +46,7 @@ public class PauseState extends MenuState {
 			} else {
 				g.setColor(Color.WHITE);
 			}
-			g.drawLine(Game.WIDTH/2, 0, Game.WIDTH/2, Game.HEIGHT);
-
+			
 			// Dessin des options du menu.
 			g.setFont(font);
 			g.drawString(options[i], Game.WIDTH / 2 - g.getFontMetrics().stringWidth(options[i])/2, 100 + i * 150);
