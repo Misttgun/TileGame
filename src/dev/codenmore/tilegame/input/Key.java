@@ -9,42 +9,22 @@ package dev.codenmore.tilegame.input;
  * @author maurel
  *
  */
-
 public class Key {
 
-	// Declaration de la variable bouton appuye
-	private boolean pressed = false;
+	// Variables qui gerent les etats de la touche.
+	public boolean keyStateDown;
+	public boolean lastKeyState;
 
-	// Declaration de la variable nombre d'appuis
-	private int numTimesPressed = 0;
-
-	/**
-	 * Methode qui retourne le nombre de fois qu'une touche est appuye
-	 * 
-	 * @return le nombre d'appuis
-	 */
-	public int getNumTimesPressed() {
-		return numTimesPressed;
-	}
+	public boolean isTappedDown;
+	public boolean isPressedDown;
 
 	/**
-	 * Methode qui verifie si la touche est appuye
-	 * 
-	 * @return true si le bouton est appuye
+	 * Methode qui reinitialise la touche.
 	 */
-	public boolean isPressed() {
-		return pressed;
-	}
-
-	/**
-	 * Methode qui appuie la touche
-	 * 
-	 * @param isPressed
-	 */
-	public void toggle(boolean isPressed) {
-		pressed = isPressed;
-		if (pressed) {
-			numTimesPressed++;
-		}
+	public void reset() {
+		this.keyStateDown = false;
+		this.isTappedDown = false;
+		this.isPressedDown = false;
+		this.lastKeyState = false;
 	}
 }

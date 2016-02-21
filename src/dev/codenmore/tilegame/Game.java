@@ -132,16 +132,10 @@ public class Game implements Runnable {
 				delta--;
 			}
 
-			try {
-				Thread.sleep((long) ((lastTime - System.nanoTime() + timePerTick) / 1000000));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
 			render();
 
 			if (timer >= 1000000000) {
-				// System.out.println("Ticks and Frames: " + ticks);
+				System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}
@@ -204,6 +198,13 @@ public class Game implements Runnable {
 	 */
 	public GameCamera getGameCamera() {
 		return gameCamera;
+	}
+
+	/**
+	 * @return the stateManager
+	 */
+	public StateManager getStateManager() {
+		return stateManager;
 	}
 
 }

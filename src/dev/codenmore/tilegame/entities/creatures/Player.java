@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.gfx.Animation;
 import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.states.PauseState;
 
 /**
  * Classe qui definit le joueur.
@@ -17,7 +18,7 @@ public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight, animStand_down, animStand_up, animStand_left,
 			animStand_right;
-
+	
 	/**
 	 * Constructeur du joueur.
 	 * 
@@ -70,21 +71,24 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
-		if (handler.getKeyManager().up.isPressed()) {
+		if (handler.getKeyManager().up.keyStateDown && !handler.getKeyManager().up.lastKeyState) {
 			movingDir = 0;
 			yMove = -speed;
 		}
-		if (handler.getKeyManager().down.isPressed()) {
+		if (handler.getKeyManager().down.keyStateDown) {
 			movingDir = 1;
 			yMove = speed;
 		}
-		if (handler.getKeyManager().left.isPressed()) {
+		if (handler.getKeyManager().left.keyStateDown) {
 			movingDir = 2;
 			xMove = -speed;
 		}
-		if (handler.getKeyManager().right.isPressed()) {
+		if (handler.getKeyManager().right.keyStateDown) {
 			movingDir = 3;
 			xMove = speed;
+		}
+		if(handler.getKeyManager().space.keyStateDown){
+			handler.getStateManager().getStates().push(new PauseState(handler));
 		}
 	}
 

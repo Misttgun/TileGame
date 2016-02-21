@@ -2,6 +2,7 @@ package dev.codenmore.tilegame;
 
 import dev.codenmore.tilegame.gfx.GameCamera;
 import dev.codenmore.tilegame.input.KeyManager;
+import dev.codenmore.tilegame.states.StateManager;
 import dev.codenmore.tilegame.worlds.World;
 
 /**
@@ -40,6 +41,15 @@ public class Handler {
 	 */
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();
+	}
+
+	/**
+	 * Methode qui recupere le statemanager du jeu.
+	 * 
+	 * @return le statemanager du jeu
+	 */
+	public StateManager getStateManager() {
+		return game.getStateManager();
 	}
 
 	/**

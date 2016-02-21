@@ -25,7 +25,7 @@ public class StateManager {
 	public StateManager(Handler handler) {
 		states = new Stack<>();
 		this.handler = handler;
-		states.push(new MenuState(handler, this));
+		states.push(new MainMenuState(handler));
 	}
 
 	/**

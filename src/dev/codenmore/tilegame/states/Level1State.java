@@ -19,10 +19,9 @@ public class Level1State extends State {
 	 * Constructeur du gameState. Initialise le joueur et le monde (niveau).
 	 * 
 	 * @param handler
-	 * @param stateManager
 	 */
-	public Level1State(Handler handler, StateManager stateManager) {
-		super(handler, stateManager);
+	public Level1State(Handler handler) {
+		super(handler, handler.getStateManager());
 		world = new World(handler, "res/worlds/world1.txt");
 		handler.setWorld(world);
 
