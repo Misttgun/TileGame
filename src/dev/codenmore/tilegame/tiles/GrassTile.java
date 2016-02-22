@@ -1,6 +1,6 @@
 package dev.codenmore.tilegame.tiles;
 
-import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.gfx.assets.WorldAssets;
 
 /**
  * Classe qui definit l'herbe dans le jeu.
@@ -16,7 +16,7 @@ public class GrassTile extends Tile {
 	 * @param id
 	 */
 	public GrassTile(int id) {
-		super(Assets.grass, id);
+		super(WorldAssets.grass, id);
 	}
 
 }

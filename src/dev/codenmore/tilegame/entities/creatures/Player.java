@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.gfx.Animation;
-import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.gfx.assets.PlayerAssets;
 import dev.codenmore.tilegame.states.PauseState;
 
 /**
@@ -16,9 +16,8 @@ import dev.codenmore.tilegame.states.PauseState;
  */
 public class Player extends Creature {
 
-	private Animation animDown, animUp, animLeft, animRight, animStand_down, animStand_up, animStand_left,
-			animStand_right;
-	
+	private Animation animDown, animUp, animLeft, animRight;
+
 	/**
 	 * Constructeur du joueur.
 	 * 
@@ -36,14 +35,10 @@ public class Player extends Creature {
 		bounds.height = 26;
 
 		// Animations
-		animDown = new Animation(500, Assets.player_down);
-		animUp = new Animation(500, Assets.player_up);
-		animLeft = new Animation(500, Assets.player_left);
-		animRight = new Animation(500, Assets.player_right);
-		animStand_down = new Animation(10000, Assets.player_stand_down);
-		animStand_up = new Animation(10000, Assets.player_stand_up);
-		animStand_left = new Animation(10000, Assets.player_stand_left);
-		animStand_right = new Animation(10000, Assets.player_stand_right);
+		animDown = new Animation(500, PlayerAssets.player_down);
+		animUp = new Animation(500, PlayerAssets.player_up);
+		animLeft = new Animation(500, PlayerAssets.player_left);
+		animRight = new Animation(500, PlayerAssets.player_right);
 	}
 
 	@Override
@@ -53,10 +48,6 @@ public class Player extends Creature {
 		animUp.tick();
 		animRight.tick();
 		animLeft.tick();
-		animStand_down.tick();
-		animStand_up.tick();
-		animStand_left.tick();
-		animStand_right.tick();
 
 		// Mouvements
 		getInput();
@@ -87,7 +78,7 @@ public class Player extends Creature {
 			movingDir = 3;
 			xMove = speed;
 		}
-		if(handler.getKeyManager().space.keyStateDown){
+		if (handler.getKeyManager().space.keyStateDown) {
 			handler.getStateManager().getStates().push(new PauseState(handler));
 		}
 	}
@@ -108,28 +99,27 @@ public class Player extends Creature {
 			if (xMove < 0) {
 				return animLeft.getCurrentFrame();
 			} else {
-				return animStand_left.getCurrentFrame();
+				return animLeft.getCurrentFrame(1);
 			}
 		} else if (movingDir == 3) {
 			if (xMove > 0) {
 				return animRight.getCurrentFrame();
 			} else {
-				return animStand_right.getCurrentFrame();
+				return animRight.getCurrentFrame(1);
 			}
 		} else if (movingDir == 0) {
 			if (yMove < 0) {
 				return animUp.getCurrentFrame();
 			} else {
-				return animStand_up.getCurrentFrame();
+				return animUp.getCurrentFrame(1);
 			}
 		} else if (movingDir == 1) {
 			if (yMove > 0) {
 				return animDown.getCurrentFrame();
 			} else {
-				return animStand_down.getCurrentFrame();
+				return animDown.getCurrentFrame(1);
 			}
 		}
 		return null;
 	}
-
 }

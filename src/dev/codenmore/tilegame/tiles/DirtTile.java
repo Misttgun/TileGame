@@ -1,6 +1,6 @@
 package dev.codenmore.tilegame.tiles;
 
-import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.gfx.assets.WorldAssets;
 
 /**
  * Classe qui definit la terre (sol) dans le jeu.
@@ -15,7 +15,7 @@ public class DirtTile extends Tile {
 	 * @param id
 	 */
 	public DirtTile(int id) {
-		super(Assets.dirt, id);
+		super(WorldAssets.dirt, id);
 	}
 
 }

@@ -38,7 +38,7 @@ public class Animation {
 		lastTime = System.currentTimeMillis();
 
 		if (timer > speed) {
-			index++;
+			index += 2;
 			timer = 0;
 			if (index >= frames.length) index = 0;
 		}
@@ -50,6 +50,15 @@ public class Animation {
 	 * @return l'image de l'animation
 	 */
 	public BufferedImage getCurrentFrame() {
+		return frames[index];
+	}
+
+	/**
+	 * Methode qui recupere la frame actuelle de l'animation a partir de l'index.
+	 * 
+	 * @return l'image de l'animation
+	 */
+	public BufferedImage getCurrentFrame(int index) {
 		return frames[index];
 	}
 

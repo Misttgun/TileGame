@@ -1,6 +1,6 @@
 package dev.codenmore.tilegame.tiles;
 
-import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.gfx.assets.WorldAssets;
 /**
  * Classe qui definit la pierre dans le jeu.
  * 
@@ -14,7 +14,7 @@ public class RockTile extends Tile {
 	 * @param id
 	 */
 	public RockTile(int id) {
-		super(Assets.stone, id);
+		super(WorldAssets.stone, id);
 	}
 	
 	@Override

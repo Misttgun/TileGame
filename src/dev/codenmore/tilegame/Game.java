@@ -4,8 +4,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.codenmore.tilegame.display.Display;
-import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.gfx.GameCamera;
+import dev.codenmore.tilegame.gfx.assets.EnemyAssets;
+import dev.codenmore.tilegame.gfx.assets.PlayerAssets;
+import dev.codenmore.tilegame.gfx.assets.WorldAssets;
 import dev.codenmore.tilegame.input.KeyManager;
 import dev.codenmore.tilegame.states.StateManager;
 
@@ -54,7 +56,10 @@ public class Game implements Runnable {
 		display = new Display(TITLE, WIDTH, HEIGHT);
 		display.getCanvas().addKeyListener(keyManager);
 		display.getCanvas().requestFocus();
-		Assets.init();
+		
+		WorldAssets.init();
+		PlayerAssets.init();
+		EnemyAssets.init();
 
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);

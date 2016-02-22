@@ -58,7 +58,7 @@ public abstract class Creature extends Entity {
 		} else if (y > (handler.getWorld().getHeight() * Tile.TILEHEIGHT)) {
 			y = handler.getWorld().getHeight() * Tile.TILEHEIGHT;
 		}
-		
+
 		if (!checkEntityCollisions(xMove, 0f)) moveX();
 		if (!checkEntityCollisions(0f, yMove)) moveY();
 	}
