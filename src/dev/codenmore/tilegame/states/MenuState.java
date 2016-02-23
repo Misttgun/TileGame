@@ -14,7 +14,9 @@ import dev.codenmore.tilegame.Handler;
 public abstract class MenuState extends State {
 
 	// Police des menus.
-	protected Font font = new Font("Arial", Font.PLAIN, 70);
+	protected Font font1 = new Font("Arial", Font.PLAIN, 70);
+	protected Font font2 = new Font("Arial", Font.PLAIN, 50);
+	protected Font font3 = new Font("Arial", Font.PLAIN, 25);
 
 	/**
 	 * Constructeur du state (etat) menu

@@ -48,8 +48,8 @@ public class MainMenuState extends MenuState {
 			}
 
 			// Dessin des options du menu.
-			g.setFont(font);
-			g.drawString(options[i], Game.WIDTH / 2 - g.getFontMetrics().stringWidth(options[i])/2, 100 + i * 150);
+			g.setFont(font1);
+			g.drawString(options[i], Game.WIDTH / 2 - g.getFontMetrics().stringWidth(options[i]) / 2, 100 + i * 150);
 		}
 	}
 
@@ -58,25 +58,31 @@ public class MainMenuState extends MenuState {
 	 */
 	protected void getInput() {
 
-		if (handler.getKeyManager().up.keyStateDown && !handler.getKeyManager().up.lastKeyState) {
+		if ((handler.getKeyManager().up.keyStateDown && !handler.getKeyManager().up.lastKeyState)
+				|| (handler.getKeyManager().z.keyStateDown && !handler.getKeyManager().z.lastKeyState)) {
 			currentSelection--;
 			if (currentSelection < 0) {
 				currentSelection = options.length - 1;
 			}
 			handler.getKeyManager().up.lastKeyState = true;
+			handler.getKeyManager().z.lastKeyState = true;
 
-		} else if (handler.getKeyManager().down.keyStateDown && !handler.getKeyManager().down.lastKeyState) {
+		} else if ((handler.getKeyManager().down.keyStateDown && !handler.getKeyManager().down.lastKeyState)
+				|| (handler.getKeyManager().s.keyStateDown && !handler.getKeyManager().s.lastKeyState)) {
 			currentSelection++;
 			if (currentSelection > options.length - 1) {
 				currentSelection = 0;
 			}
 			handler.getKeyManager().down.lastKeyState = true;
+			handler.getKeyManager().s.lastKeyState = true;
 		}
+		
+		// Condition qui gere la touche enter
 		if (handler.getKeyManager().enter.keyStateDown) {
 			if (currentSelection == 0) {
 				handler.getStateManager().getStates().push(new Level1State(handler));
 			} else if (currentSelection == 1) {
-
+				handler.getStateManager().getStates().push(new HelpMenuState(handler));
 			} else if (currentSelection == 2) {
 				System.exit(0);
 			}

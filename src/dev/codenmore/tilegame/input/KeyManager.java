@@ -17,7 +17,7 @@ public class KeyManager implements KeyListener {
 	public Map<Key, Integer> keys = new HashMap<Key, Integer>();
 
 	// Declaration des touches du jeu.
-	public Key up, down, left, right, enter, space;
+	public Key up, down, left, right, enter, space, q, z, s, d, echap;
 
 	/**
 	 * Constructeur du KeyManager
@@ -30,6 +30,11 @@ public class KeyManager implements KeyListener {
 		right = new Key();
 		enter = new Key();
 		space = new Key();
+		q = new Key();
+		z = new Key();
+		s = new Key();
+		d = new Key();
+		echap = new Key();
 
 		// Ajout a la liste des touches du jeu.
 		keys.put(up, KeyEvent.VK_UP);
@@ -38,6 +43,11 @@ public class KeyManager implements KeyListener {
 		keys.put(right, KeyEvent.VK_RIGHT);
 		keys.put(enter, KeyEvent.VK_ENTER);
 		keys.put(space, KeyEvent.VK_SPACE);
+		keys.put(q, KeyEvent.VK_Q);
+		keys.put(s, KeyEvent.VK_S);
+		keys.put(z, KeyEvent.VK_Z);
+		keys.put(d, KeyEvent.VK_D);
+		keys.put(echap, KeyEvent.VK_ESCAPE);
 	}
 
 	@Override

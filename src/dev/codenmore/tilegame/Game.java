@@ -9,6 +9,7 @@ import dev.codenmore.tilegame.gfx.assets.EnemyAssets;
 import dev.codenmore.tilegame.gfx.assets.PlayerAssets;
 import dev.codenmore.tilegame.gfx.assets.WorldAssets;
 import dev.codenmore.tilegame.input.KeyManager;
+import dev.codenmore.tilegame.states.Level1State;
 import dev.codenmore.tilegame.states.StateManager;
 
 /**
@@ -32,6 +33,7 @@ public class Game implements Runnable {
 
 	// States
 	private StateManager stateManager;
+	private Level1State level1;
 
 	// Input
 	private KeyManager keyManager;
@@ -65,6 +67,7 @@ public class Game implements Runnable {
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		stateManager = new StateManager(handler);
+		level1 = new Level1State(handler);
 	}
 
 	/**
@@ -210,5 +213,13 @@ public class Game implements Runnable {
 	public StateManager getStateManager() {
 		return stateManager;
 	}
+
+	/**
+	 * @return the level1
+	 */
+	public Level1State getLevel1() {
+		return level1;
+	}
+	
 
 }
