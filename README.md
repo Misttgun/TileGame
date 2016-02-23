@@ -5,7 +5,7 @@
 
 ##Jeu
 - Les touches directionnelles ou les touches classiques Z, Q, S, D pour diriger le joueur.
-- La touche "Espace" mettre le jeu en pause.
+- La touche "Espace" pour mettre le jeu en pause.
 
 
 Enjoy !!
