@@ -20,6 +20,7 @@ public abstract class Creature extends Entity {
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
+	protected int numSteps;
 
 	/**
 	 * Direction dans laquelle la creature se deplace. 0 (haut), 1 (bas), 2 (gauche) et 3 (droite).
@@ -41,6 +42,7 @@ public abstract class Creature extends Entity {
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
+		numSteps = 0;
 	}
 
 	/**
@@ -59,8 +61,16 @@ public abstract class Creature extends Entity {
 			y = handler.getWorld().getHeight() * Tile.TILEHEIGHT;
 		}
 
-		if (!checkEntityCollisions(xMove, 0f)) moveX();
-		if (!checkEntityCollisions(0f, yMove)) moveY();
+		if (!checkEntityCollisions(xMove, 0f)) {
+			moveX();
+			numSteps += 1;
+		}
+		if (!checkEntityCollisions(0f, yMove)) {
+			moveY();
+			numSteps += 1;
+		}
+		
+		
 	}
 
 	/**

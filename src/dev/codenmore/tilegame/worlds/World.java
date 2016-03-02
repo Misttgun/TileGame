@@ -1,7 +1,10 @@
 package dev.codenmore.tilegame.worlds;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
+import dev.codenmore.tilegame.Game;
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.entities.EntityManager;
 import dev.codenmore.tilegame.entities.creatures.Player;
@@ -24,6 +27,10 @@ public class World {
 	private int height;
 	private int spawnX;
 	private int spawnY;
+
+	// Variables qui gere le menu pause.
+	private boolean pause = false;
+	private String pauseMsg = "PAUSE";
 
 	/**
 	 * Tableau de 2 dimensions qui represente la carte du monde.
@@ -59,7 +66,20 @@ public class World {
 	 * Methode qui mets a jour le monde (niveau).
 	 */
 	public void tick() {
+		pause();
+		// Lorsque le jeu est en pause, le joueur ne peut pas bouger.
+		if (pause) {
+			return;
+		}
+
 		entityManager.tick();
+	}
+
+	public void pause() {
+		if (handler.getKeyManager().space.keyStateDown && !handler.getKeyManager().space.lastKeyState) {
+			pause = !pause;
+			handler.getKeyManager().space.lastKeyState = true;
+		}
 	}
 
 	/**
@@ -84,6 +104,13 @@ public class World {
 
 		// Entites
 		entityManager.render(g);
+
+		// Dessin du message lorsque le jeu est en pause.
+		if (pause) {
+			g.setColor(Color.RED);
+			g.setFont(new Font("Arial", Font.PLAIN, 70));
+			g.drawString(pauseMsg, Game.WIDTH / 2 - g.getFontMetrics().stringWidth(pauseMsg) / 2, Game.HEIGHT / 2);
+		}
 	}
 
 	/**
@@ -95,7 +122,6 @@ public class World {
 	 */
 	public Tile getTile(int x, int y) {
 
-		
 		if (x < 0 || y < 0 || x >= width || y >= height) {
 			return Tile.rockTile;
 		}

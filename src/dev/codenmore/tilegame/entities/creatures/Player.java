@@ -1,11 +1,8 @@
 package dev.codenmore.tilegame.entities.creatures;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import dev.codenmore.tilegame.Game;
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.gfx.Animation;
 import dev.codenmore.tilegame.gfx.assets.PlayerAssets;
@@ -19,10 +16,6 @@ import dev.codenmore.tilegame.gfx.assets.PlayerAssets;
 public class Player extends Creature {
 
 	private Animation animDown, animUp, animLeft, animRight;
-
-	// Variables qui gere le menu pause.
-	private boolean pause = false;
-	private String pauseMsg = "PAUSE";
 
 	/**
 	 * Constructeur du joueur.
@@ -68,30 +61,16 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
-		if (handler.getKeyManager().space.keyStateDown && !handler.getKeyManager().space.lastKeyState) {
-			pause = !pause;
-			handler.getKeyManager().space.lastKeyState = true;
-		}
-
-		// Lorsaue le jeu est en pause, le joueur ne peut pas bouger.
-		if (pause) {
-			return;
-		}
-
 		if (handler.getKeyManager().up.keyStateDown || handler.getKeyManager().z.keyStateDown) {
-			movingDir = 0;
 			yMove = -speed;
 		}
 		if (handler.getKeyManager().down.keyStateDown || handler.getKeyManager().s.keyStateDown) {
-			movingDir = 1;
 			yMove = speed;
 		}
 		if (handler.getKeyManager().left.keyStateDown || handler.getKeyManager().q.keyStateDown) {
-			movingDir = 2;
 			xMove = -speed;
 		}
 		if (handler.getKeyManager().right.keyStateDown || handler.getKeyManager().d.keyStateDown) {
-			movingDir = 3;
 			xMove = speed;
 		}
 	}
@@ -100,13 +79,6 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()),
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-
-		// Dessin du message lorsque le jeu est en pause.
-		if (pause) {
-			g.setColor(Color.RED);
-			g.setFont(new Font("Arial", Font.PLAIN, 70));
-			g.drawString(pauseMsg, Game.WIDTH / 2 - g.getFontMetrics().stringWidth(pauseMsg) / 2, Game.HEIGHT / 2);
-		}
 	}
 
 	/**

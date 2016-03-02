@@ -4,6 +4,7 @@
 package dev.codenmore.tilegame.entities.enemy;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.entities.creatures.Creature;
@@ -51,13 +52,64 @@ public class Enemy extends Creature {
 		animUp.tick();
 		animRight.tick();
 		animLeft.tick();
+
+		// Mouvements
+		AIMove();
+		move();
+	}
+
+	private void AIMove() {
+
+		if (numSteps <= 100) {
+			xMove = -speed;
+		} else {
+			xMove = speed;
+		}
+
+		if (numSteps >= 300) {
+			numSteps = -100;
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(animDown.getCurrentFrame(1), (int) (x - handler.getGameCamera().getxOffset()),
+		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()),
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 
+	}
+
+	/**
+	 * Methode recupere l'animation actuelle du joueur.
+	 * 
+	 * @return l'image de l'animation
+	 */
+	private BufferedImage getCurrentAnimationFrame() {
+		if (movingDir == 2) {
+			if (xMove < 0) {
+				return animLeft.getCurrentFrame();
+			} else {
+				return animLeft.getCurrentFrame(1);
+			}
+		} else if (movingDir == 3) {
+			if (xMove > 0) {
+				return animRight.getCurrentFrame();
+			} else {
+				return animRight.getCurrentFrame(1);
+			}
+		} else if (movingDir == 0) {
+			if (yMove < 0) {
+				return animUp.getCurrentFrame();
+			} else {
+				return animUp.getCurrentFrame(1);
+			}
+		} else if (movingDir == 1) {
+			if (yMove > 0) {
+				return animDown.getCurrentFrame();
+			} else {
+				return animDown.getCurrentFrame(1);
+			}
+		}
+		return null;
 	}
 
 }
