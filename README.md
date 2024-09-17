@@ -1,11 +1,14 @@
-#Instructions
+# Tile Game
+This is a game project I used to learn JAVA. 
 
-##Menu
-- La touche "Entrer" pour valider les choix et la touche "Echap" pour sortir du menu.
+I mainly followed TheCherno tutorials at the time. 
 
-##Jeu
-- Les touches directionnelles ou les touches classiques Z, Q, S, D pour diriger le joueur.
-- La touche "Espace" pour mettre le jeu en pause.
+## Menu
+- Enter to validate choices and Escape to exit the menu.
+
+## Game
+- WASD for player movement.
+- Escape to pause the game.
 
 
 Enjoy !!
